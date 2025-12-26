@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, type ChangeEvent } from 'react';
 import './App.css';
-import bg from "./assets/bg.jpg";
-import music from "./assets/A New World.mp3";
+import bg from "/bg.jpg";
+import music from "/music.mp3";
 
 function App() {
   const [isMuted, setIsMuted] = useState(false);
