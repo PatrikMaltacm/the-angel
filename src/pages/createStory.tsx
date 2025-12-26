@@ -119,6 +119,13 @@ const MenuBar = ({ editor }: { editor: any }) => {
             >
                 Lista
             </button>
+            <button
+                type="button"
+                onClick={() => editor.chain().focus().toggleBlockquote().run()}
+                className={editor.isActive('blockquote') ? 'is-active' : ''}
+            >
+                Citação
+            </button>
         </div>
     );
 };

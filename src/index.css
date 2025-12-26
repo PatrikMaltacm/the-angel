@@ -678,3 +678,26 @@ body {
   font-size: 0.8rem;
   letter-spacing: 4px;
 }
+
+/* Estilo para as citações/escrituras dentro do conteúdo */
+.story-content-render blockquote, 
+.tiptap-content blockquote {
+    margin: 20px 0;
+    padding: 15px 25px;
+    border-left: 4px solid #8b4513;
+    background: rgba(139, 69, 19, 0.05);
+    font-style: italic;
+    font-family: 'Lora', serif;
+    color: #5e4331;
+    position: relative;
+}
+
+.story-content-render blockquote em,
+.tiptap-content blockquote em {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    text-align: right;
+    color: #2c1e14;
+    font-weight: bold;
+}
