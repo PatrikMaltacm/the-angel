@@ -3,6 +3,7 @@ import './App.css';
 
 function App() {
   const [started, setStarted] = useState(false);
+  const [isFlipping, setIsFlipping] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolume] = useState(0.1); 
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -17,10 +18,17 @@ function App() {
   }, [volume]);
 
   const handleStart = () => {
-    setStarted(true);
+    setIsFlipping(true);
+    
+    // Toca a música imediatamente
     if (audioRef.current) {
-      audioRef.current.play().catch(error => console.log("Erro ao tocar:", error));
+      audioRef.current.play().catch(error => console.log("Erro:", error));
     }
+
+    // Aguarda o fim da animação de "virar página" (1s) para trocar o componente
+    setTimeout(() => {
+      setStarted(true);
+    }, 1000);
   };
 
   const toggleMute = () => {
@@ -43,17 +51,23 @@ function App() {
       <audio ref={audioRef} src={musicPath} loop />
 
       {!started ? (
-        <div style={{
+        <div className={`book-cover ${isFlipping ? 'flip-animation' : ''}`} style={{
           height: '100vh',
           width: '100vw',
-          backgroundColor: '#0d0d0d',
+          backgroundColor: '#1a1a1a', // Cor de couro de livro
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           flexDirection: 'column',
-          color: '#f4e4bc'
+          color: '#f4e4bc',
+          position: 'fixed',
+          zIndex: 10,
+          transformOrigin: 'left center', // Origem da rotação na borda esquerda
+          boxShadow: 'inset 0 0 100px rgba(0,0,0,0.5)'
         }}>
-          <h1 style={{ fontFamily: 'Cinzel, serif', marginBottom: '20px' }}>O Condado espera por você</h1>
+          <h1 style={{ fontFamily: 'Cinzel, serif', marginBottom: '20px', textAlign: 'center' }}>
+            Crônicas da Terra Média
+          </h1>
           <button 
             onClick={handleStart}
             style={{
@@ -63,14 +77,15 @@ function App() {
               border: '1px solid #f4e4bc',
               color: '#f4e4bc',
               cursor: 'pointer',
-              fontSize: '1.2rem'
+              fontSize: '1.2rem',
+              letterSpacing: '2px'
             }}
           >
             Entrar no Refúgio
           </button>
         </div>
       ) : (
-        <div style={{ 
+        <div className="fade-in" style={{ 
           height: '100vh',
           width: '100vw',
           backgroundImage: `linear-gradient(rgba(40, 20, 0, 0.6), rgba(0, 0, 0, 0.7)), url(${bgPath})`,
@@ -92,6 +107,7 @@ function App() {
             Sinta o calor da lareira, a jornada pode esperar.
           </p>
 
+          {/* Painel de Volume */}
           <div style={{
             position: 'absolute',
             bottom: '40px',
@@ -106,9 +122,7 @@ function App() {
             border: '1px solid rgba(244, 228, 188, 0.2)',
             backdropFilter: 'blur(5px)'
           }}>
-            <label style={{ fontFamily: 'Cinzel, serif', fontSize: '0.7rem', letterSpacing: '1px' }}>
-              Volume da Taverna
-            </label>
+            <label style={{ fontFamily: 'Cinzel, serif', fontSize: '0.7rem' }}>Volume</label>
             <input 
               type="range" 
               min="0" 
@@ -118,19 +132,8 @@ function App() {
               onChange={handleVolumeChange}
               style={{ cursor: 'pointer', accentColor: '#f4e4bc', width: '120px' }}
             />
-            <button 
-              onClick={toggleMute}
-              style={{
-                background: 'transparent',
-                border: 'none',
-                color: '#f4e4bc',
-                fontFamily: 'Cinzel, serif',
-                cursor: 'pointer',
-                fontSize: '0.65rem',
-                textTransform: 'uppercase'
-              }}
-            >
-              {isMuted ? "Restaurar Som" : "Silenciar"}
+            <button onClick={toggleMute} style={{ background: 'transparent', border: 'none', color: '#f4e4bc', cursor: 'pointer', fontSize: '0.65rem' }}>
+              {isMuted ? "ATIVAR SOM" : "SILENCIAR"}
             </button>
           </div>
         </div>
