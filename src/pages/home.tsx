@@ -17,8 +17,15 @@ const Home = () => {
   const flipPath = "/flipPage.ogg";
 
   useEffect(() => {
-    if (audioRef.current) audioRef.current.volume = volume;
-    if (flipAudioRef.current) flipAudioRef.current.volume = volume * 2;
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+    }
+    if (flipAudioRef.current) {
+      /*
+         Garante que o valor nunca ultrapasse 1.0 mesmo com o multiplicador 
+      */
+      flipAudioRef.current.volume = Math.min(volume * 2, 1);
+    }
   }, [volume]);
 
   const handleStart = () => {
@@ -39,7 +46,10 @@ const Home = () => {
   };
 
   const handleVolumeChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setVolume(parseFloat(e.target.value));
+    const val = parseFloat(e.target.value);
+    if (val >= 0 && val <= 1) {
+      setVolume(val);
+    }
   };
 
   const handleActionClickCreate = () => {
@@ -93,7 +103,14 @@ const Home = () => {
 
             <div className="volume-control">
               <label style={{ fontFamily: 'Cinzel, serif', fontSize: '0.7rem' }}>Volume</label>
-              <input type="range" min="0" max="1" step="0.01" value={volume} onChange={handleVolumeChange} />
+              <input 
+                type="range" 
+                min="0" 
+                max="1" 
+                step="0.01" 
+                value={volume} 
+                onChange={handleVolumeChange} 
+              />
               <button onClick={toggleMute}>{isMuted ? "ATIVAR SOM" : "SILENCIAR"}</button>
             </div>
           </section>
@@ -128,7 +145,11 @@ const Home = () => {
 
               <div style={{ textAlign: 'center', marginTop: '40px' }}>
                 <button onClick={handleActionClickList} className="btn-fantasy">Ver Crônicas</button>
-                <button onClick={handleActionClickCreate} className="btn-fantasy" style={{ marginLeft: '10px', background: '#2c1e14', color: '#f4e4bc' }}>
+                <button 
+                  onClick={handleActionClickCreate} 
+                  className="btn-fantasy" 
+                  style={{ marginLeft: '10px', background: '#2c1e14', color: '#f4e4bc' }}
+                >
                   Escrever Lenda
                 </button>
               </div>
