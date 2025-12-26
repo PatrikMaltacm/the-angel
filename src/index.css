@@ -13,8 +13,668 @@ body {
   line-height: 1.6;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: 'Cinzel', serif;
   letter-spacing: 2px;
   text-transform: uppercase;
+}
+
+/* Efeito de virar a página do livro */
+.flip-animation {
+  animation: pageFlip 1.2s forwards ease-in-out;
+}
+
+@keyframes pageFlip {
+  0% {
+    transform: perspective(2000px) rotateY(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: perspective(2000px) rotateY(-110deg);
+    opacity: 0;
+  }
+}
+
+/* Aparecimento suave do cenário ao fundo */
+.fade-in {
+  animation: fadeInEffect 2s ease-in;
+}
+
+@keyframes fadeInEffect {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+body {
+  overflow: hidden;
+  /* Evita scrolls durante a animação */
+  background-color: #000;
+}
+
+.volume-control {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(244, 228, 188, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.volume-control input {
+  cursor: pointer;
+  accent-color: #f4e4bc;
+  width: 120px;
+}
+
+.volume-control button {
+  background: transparent;
+  border: none;
+  color: #f4e4bc;
+  font-family: 'Cinzel', serif;
+  cursor: pointer;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+}
+
+.btn-fantasy {
+  font-family: 'Cinzel', serif;
+  padding: 12px 24px;
+  border: 2px solid #2c1e14;
+  background: transparent;
+  cursor: pointer;
+  transition: 0.3s;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.btn-fantasy:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid rgba(44, 30, 20, 0.2);
+  margin: 10px;
+  pointer-events: none;
+}
+
+/* Permitir scroll após começar */
+body {
+  overflow-y: auto !important;
+  background-color: #0d0d0d;
+}
+
+
+/* Container de fundo para as páginas de Auth */
+.auth-container {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 20px;
+}
+
+/* O Cartão de Pergaminho */
+.parchment-card {
+  background-color: #f4e4bc;
+  background-image: radial-gradient(circleAt center, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+  color: #2c1e14;
+  padding: 40px 50px;
+  width: 100%;
+  max-width: 450px;
+  border-radius: 2px;
+  /* Efeito de borda dupla e sombra pesada */
+  box-shadow:
+    0 0 50px rgba(0, 0, 0, 0.8),
+    15px 15px 0px #2c1e14;
+  position: relative;
+  border: 1px solid rgba(44, 30, 20, 0.2);
+}
+
+/* Detalhe decorativo interno (borda fina) */
+.parchment-card::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px solid rgba(44, 30, 20, 0.1);
+  pointer-events: none;
+}
+
+/* Estilização do Formulário */
+.fantasy-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #4a3424;
+}
+
+.input-group input {
+  padding: 12px 15px;
+  background: rgba(44, 30, 20, 0.05);
+  border: 1px solid rgba(44, 30, 20, 0.2);
+  border-bottom: 2px solid #2c1e14;
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  color: #2c1e14;
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+  outline: none;
+  background: rgba(44, 30, 20, 0.08);
+  border-bottom-color: #8b4513;
+}
+
+/* Botão de Ação Épico */
+.btn-action {
+  margin-top: 10px;
+  padding: 15px;
+  background-color: #2c1e14;
+  color: #f4e4bc;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn-action:hover {
+  background-color: #4a3424;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+.btn-action:active {
+  transform: translateY(0);
+}
+
+/* Link de troca (Login/Registro) */
+.auth-link {
+  color: #8b4513;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border 0.3s;
+}
+
+.auth-link:hover {
+  border-bottom: 1px solid #8b4513;
+}
+
+/* Estilo para a barra de volume mini nas páginas de Auth */
+.volume-mini {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(244, 228, 188, 0.2);
+}
+
+.volume-mini input[type="range"] {
+  accent-color: #f4e4bc;
+  cursor: pointer;
+}
+
+/* Create Story */
+/* Container do Menu Superior do Editor */
+.tiptap-menu {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  background: rgba(44, 30, 20, 0.1);
+  border: 1px solid #2c1e14;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+}
+
+.tiptap-menu button {
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 5px 10px;
+  font-family: 'Cinzel', serif;
+  cursor: pointer;
+  color: #2c1e14;
+}
+
+.tiptap-menu button.is-active {
+  background: #2c1e14;
+  color: #f4e4bc;
+}
+
+/* Área de Texto do Tiptap */
+.tiptap-content {
+  border: 1px solid #2c1e14;
+  padding: 20px;
+  min-height: 300px;
+  background: rgba(44, 30, 20, 0.02);
+  border-radius: 0 0 4px 4px;
+}
+
+/* Removendo o outline do editor */
+.tiptap :focus {
+  outline: none;
+}
+
+.tiptap p {
+  font-family: 'Lora', serif;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.tiptap h1 {
+  font-family: 'Cinzel', serif;
+  margin-bottom: 1.5rem;
+}
+
+/* Estilo do papel e formulário (desk-container e paper já definidos antes) */
+.tiptap-wrapper {
+  margin-top: 10px;
+}
+
+/* Container da Escrivaninha (Fundo da página de criação) */
+.desk-container {
+  min-height: 100vh;
+  width: 100vw;
+  background-color: #1a100a;
+  /* Textura de madeira escura */
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('https://www.transparenttextures.com/patterns/dark-wood.png');
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 20px;
+  overflow-y: auto;
+}
+
+/* O Papel sobre a mesa */
+.editor-paper {
+  background: #f4e4bc;
+  width: 100%;
+  max-width: 900px;
+  padding: 50px;
+  border-radius: 2px;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    0 0 100px rgba(0, 0, 0, 0.2) inset;
+  position: relative;
+  min-height: 80vh;
+}
+
+/* Borda decorativa interna do papel */
+.editor-paper::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border: 1px solid rgba(44, 30, 20, 0.15);
+  pointer-events: none;
+}
+
+/* Formulário e Inputs */
+.story-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.story-form select {
+  padding: 12px;
+  background: rgba(44, 30, 20, 0.05);
+  border: 1px solid rgba(44, 30, 20, 0.2);
+  border-bottom: 2px solid #2c1e14;
+  font-family: 'Lora', serif;
+  color: #2c1e14;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Estrutura do Tiptap */
+.tiptap-wrapper {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #2c1e14;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Menu de Ferramentas do Editor */
+.tiptap-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 10px;
+  background: #2c1e14;
+  border-bottom: 2px solid #2c1e14;
+}
+
+.tiptap-menu button {
+  background: transparent;
+  color: #f4e4bc;
+  border: 1px solid transparent;
+  padding: 5px 12px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tiptap-menu button:hover {
+  background: rgba(244, 228, 188, 0.2);
+}
+
+.tiptap-menu button.is-active {
+  background: #f4e4bc;
+  color: #2c1e14;
+}
+
+/* Área de escrita do Tiptap */
+.tiptap-content {
+  min-height: 400px;
+  padding: 25px;
+  cursor: text;
+}
+
+.tiptap-content .ProseMirror {
+  outline: none;
+  min-height: 400px;
+  font-family: 'Lora', serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #2c1e14;
+}
+
+/* Placeholders e elementos do Tiptap */
+.tiptap-content p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #adb5bd;
+  pointer-events: none;
+  height: 0;
+}
+
+/* Tela de Loading do ProtectedRoute */
+.loading-screen {
+  height: 100vh;
+  width: 100vw;
+  background-color: #0d0d0d;
+  color: #f4e4bc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* Estilo para citações (blockquotes) no editor */
+.tiptap-content blockquote {
+  border-left: 3px solid #2c1e14;
+  padding-left: 20px;
+  font-style: italic;
+  margin-left: 0;
+  color: #5e4331;
+}
+
+.btn-back {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: transparent;
+  color: #f4e4bc;
+  border: 1px solid #f4e4bc;
+  padding: 10px 20px;
+  font-family: 'Cinzel', serif;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.btn-back:hover {
+  background: #f4e4bc;
+  color: #1a100a;
+  box-shadow: 0 0 15px rgba(244, 228, 188, 0.4);
+}
+
+/* Ajuste no container para garantir que o botão se posicione em relação a ele */
+.desk-container {
+  position: relative;
+}
+
+/* Lista de histórias */
+.library-container {
+  min-height: 100vh;
+  background-color: #0d0d0d;
+  background-image:
+    radial-gradient(circle at center, rgba(44, 30, 20, 0.4) 0%, transparent 100%),
+    url('https://www.transparenttextures.com/patterns/black-paper.png');
+  padding: 80px 40px;
+}
+
+.stories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Estilo Base do Card */
+.story-card {
+  background: #f4e4bc;
+  padding: 30px;
+  border-radius: 2px;
+  position: relative;
+  transition: transform 0.3s ease;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.story-card:hover {
+  transform: translateY(-10px) rotate(1deg);
+}
+
+/* Diferenciação por Categoria */
+.story-card.curiosidade {
+  border-left: 8px solid #8b4513;
+  background: #ede0c8;
+}
+
+.story-card.conto {
+  border-left: 8px solid #2c1e14;
+}
+
+.category-tag {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: rgba(44, 30, 20, 0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #5e4331;
+}
+
+.card-preview {
+  font-family: 'Lora', serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #2c1e14;
+  margin: 20px 0;
+  max-height: 100px;
+  overflow: hidden;
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+.btn-read-more {
+  background: transparent;
+  border: 1px solid #2c1e14;
+  color: #2c1e14;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  text-transform: uppercase;
+}
+
+.btn-read-more:hover {
+  background: #2c1e14;
+  color: #f4e4bc;
+}
+
+/* Story Details Page */
+
+/* Container do Pergaminho Aberto */
+.parchment-scroll {
+  background: #f4e4bc;
+  width: 100%;
+  max-width: 850px;
+  min-height: 90vh;
+  margin: 40px auto;
+  padding: 60px 80px;
+  position: relative;
+  box-shadow: 
+    0 0 20px rgba(0,0,0,0.5),
+    inset 0 0 100px rgba(44, 30, 20, 0.15);
+  border-radius: 5px;
+}
+
+/* Ornamentos decorativos (estilo divisor de livro) */
+.ornament {
+  width: 100%;
+  height: 30px;
+  margin: 20px 0;
+  background-image: url('https://www.transparenttextures.com/patterns/black-linen.png'); /* Substituir por ícone SVG se possível */
+  border-bottom: 2px double #2c1e14;
+  opacity: 0.3;
+}
+
+.ornament.flip {
+  transform: rotate(180deg);
+  border-bottom: none;
+  border-top: 2px double #2c1e14;
+}
+
+.scroll-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.category-badge {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  color: #8b4513;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.story-title-detail {
+  font-family: 'Cinzel', serif;
+  font-size: 3.5rem;
+  color: #2c1e14;
+  margin: 15px 0;
+  line-height: 1.1;
+}
+
+.story-meta {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  color: #5e4331;
+  font-size: 1rem;
+}
+
+/* Renderização do Conteúdo HTML */
+.story-content-render {
+  font-family: 'Lora', serif;
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: #2c1e14;
+  text-align: justify;
+}
+
+.story-content-render p {
+  margin-bottom: 1.5rem;
+  text-indent: 30px; /* Recuo de parágrafo de livro */
+}
+
+.story-content-render h1, 
+.story-content-render h2 {
+  font-family: 'Cinzel', serif;
+  margin: 2rem 0 1rem 0;
+}
+
+.story-content-render blockquote {
+  border-left: 4px solid #8b4513;
+  margin: 2rem 0;
+  padding: 10px 30px;
+  background: rgba(139, 69, 19, 0.05);
+  font-style: italic;
+}
+
+.scroll-footer {
+  text-align: center;
+  margin-top: 60px;
+  font-family: 'Cinzel', serif;
+  color: rgba(44, 30, 20, 0.5);
+  font-size: 0.8rem;
+  letter-spacing: 4px;
 }
