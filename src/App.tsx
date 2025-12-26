@@ -7,21 +7,34 @@ function App() {
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolume] = useState(0.1);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const flipAudioRef = useRef<HTMLAudioElement>(null);
 
   const bgPath = "/bg.jpg";
   const musicPath = "/music.mp3";
+  const flipPath = "/flipPage.ogg";
 
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = volume;
     }
+    if (flipAudioRef.current) {
+      flipAudioRef.current.volume = volume * 2; // O som do flip costuma ser mais baixo
+    }
   }, [volume]);
 
   const handleStart = () => {
     setIsFlipping(true);
-    if (audioRef.current) {
-      audioRef.current.play().catch(error => console.log("Erro:", error));
+    
+    // Toca o som de virar página imediatamente
+    if (flipAudioRef.current) {
+      flipAudioRef.current.play().catch(error => console.log("Erro flip:", error));
     }
+
+    // Toca a música de fundo
+    if (audioRef.current) {
+      audioRef.current.play().catch(error => console.log("Erro música:", error));
+    }
+
     setTimeout(() => {
       setStarted(true);
     }, 1000);
@@ -32,19 +45,20 @@ function App() {
       audioRef.current.muted = !isMuted;
       setIsMuted(!isMuted);
     }
+    if (flipAudioRef.current) {
+      flipAudioRef.current.muted = !isMuted;
+    }
   };
 
   const handleVolumeChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newVolume = parseFloat(e.target.value);
     setVolume(newVolume);
-    if (audioRef.current) {
-      audioRef.current.volume = newVolume;
-    }
   };
 
   return (
     <>
       <audio ref={audioRef} src={musicPath} loop />
+      <audio ref={flipAudioRef} src={flipPath} />
 
       {!started ? (
         <div className={`book-cover ${isFlipping ? 'flip-animation' : ''}`} style={{
@@ -69,12 +83,12 @@ function App() {
             border: '1px solid #f4e4bc',
             color: '#f4e4bc',
             cursor: 'pointer',
-            fontSize: '1.2rem'
+            fontSize: '1.2rem',
+            letterSpacing: '2px'
           }}>Abrir Livro</button>
         </div>
       ) : (
         <main className="fade-in">
-          {/* SECTION 1: HERO */}
           <section style={{ 
             height: '100vh',
             width: '100vw',
@@ -101,7 +115,6 @@ function App() {
             </div>
           </section>
 
-          {/* SECTION 2: INFO / COMMUNITY */}
           <section style={{
             minHeight: '100vh',
             backgroundColor: '#0d0d0d',
@@ -125,9 +138,7 @@ function App() {
               </h2>
               
               <p style={{ fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '20px' }}>
-                Bem-vindo ao nosso santuário. Este é um lugar sagrado para amantes de universos fantásticos, 
-                onde as palavras ganham vida e as lendas nunca morrem. Aqui, você não é apenas um leitor, 
-                mas um guardião da imaginação.
+                Bem-vindo ao nosso santuário. Este é um lugar sagrado para amantes de universos fantásticos.
               </p>
 
               <div style={{ 
@@ -138,19 +149,16 @@ function App() {
                 padding: '20px'
               }}>
                 <h3 style={{ fontFamily: 'Cinzel, serif', marginBottom: '10px' }}>Partilhe o seu Conhecimento</h3>
-                <p>
-                  No Refúgio, encorajamos você a postar suas <strong>próprias histórias originais</strong> ou se perder em contos de outros viajantes.
-                </p>
+                <p>Poste histórias originais ou explore curiosidades sobre mundos já conhecidos.</p>
                 <p style={{ marginTop: '15px', color: '#8b4513', fontWeight: 'bold' }}>
-                  ✨ DESTAQUE: Além de contos novos, este é o lugar perfeito para compartilhar curiosidades épicas, 
-                  teorias e fatos ocultos sobre mundos de fantasia já existentes!
+                  ✨ DESTAQUE: Além de contos, compartilhe teorias e fatos ocultos sobre fantasias existentes!
                 </p>
               </div>
 
               <div style={{ textAlign: 'center', marginTop: '40px' }}>
-                <button className="btn-fantasy">Ver Crônicas Publicadas</button>
+                <button className="btn-fantasy">Ver Crônicas</button>
                 <button className="btn-fantasy" style={{ marginLeft: '10px', background: '#2c1e14', color: '#f4e4bc' }}>
-                  Escrever Nova Lenda
+                  Escrever Lenda
                 </button>
               </div>
             </div>
