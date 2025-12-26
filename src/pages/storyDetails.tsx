@@ -36,7 +36,7 @@ const StoryDetail = () => {
   if (!story) return (
     <div className="loading-screen">
       <p>Crônica não encontrada nos arquivos.</p>
-      <button onClick={() => navigate('/list')} className="btn-back" style={{ position: 'static', marginTop: '20px' }}>
+      <button onClick={() => navigate('/list-story')} className="btn-back" style={{ position: 'static', marginTop: '20px' }}>
         Voltar à Biblioteca
       </button>
     </div>
@@ -44,7 +44,7 @@ const StoryDetail = () => {
 
   return (
     <div className="desk-container">
-      <button className="btn-back" onClick={() => navigate('/list')}>
+      <button className="btn-back" onClick={() => navigate('/list-story')}>
         ← Voltar à Biblioteca
       </button>
 
