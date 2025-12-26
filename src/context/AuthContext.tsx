@@ -12,7 +12,7 @@ interface User {
         email: string;
         id: string;
         profileCompleted: boolean;
-        uuid: string;
+        uid: string;
         updatedAt: {
             _nanoseconds: number;
             _seconds: number;

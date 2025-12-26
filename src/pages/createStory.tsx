@@ -24,7 +24,7 @@ const CreateStory = () => {
 
         try {
             await api.post('api/storys/create', {
-                userID: user?.user?.id,
+                userID: user?.user?.uid,
                 userCreator: user?.user?.displayName,
                 title,
                 content: htmlContent,
@@ -33,7 +33,7 @@ const CreateStory = () => {
                 updatedAt: new Date()
             });
             alert("Sua lenda foi imortalizada!");
-            navigate('/');
+            navigate('/list-story');
         } catch (error) {
             console.error("Erro ao salvar:", error);
         }
@@ -43,7 +43,7 @@ const CreateStory = () => {
         <div className="desk-container">
             <button
                 className="btn-back"
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/list-story')}
             >
                 ← Voltar ao Condado
             </button>
