@@ -701,3 +701,101 @@ body {
     color: #2c1e14;
     font-weight: bold;
 }
+
+@media (max-width: 768px) {
+  /* Ajustes Gerais */
+  .auth-container {
+    padding: 15px;
+  }
+
+  /* Cartão de Pergaminho (Login/Registro) */
+  .parchment-card {
+    padding: 30px 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), 8px 8px 0px #2c1e14;
+  }
+
+  /* Editor de Histórias e Papel */
+  .desk-container {
+    padding: 40px 10px;
+  }
+
+  .editor-paper {
+    padding: 30px 15px;
+  }
+
+  .tiptap-content {
+    padding: 15px;
+    min-height: 300px;
+  }
+
+  .tiptap-content .ProseMirror {
+    font-size: 1rem;
+  }
+
+  .tiptap-menu {
+    justify-content: center;
+  }
+
+  /* Grade de Histórias (Biblioteca) */
+  .library-container {
+    padding: 60px 20px;
+  }
+
+  .stories-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Detalhes da História (Pergaminho Aberto) */
+  .parchment-scroll {
+    padding: 40px 20px;
+    margin: 20px auto;
+    width: 95%;
+  }
+
+  .story-title-detail {
+    font-size: 2rem;
+  }
+
+  .story-content-render {
+    font-size: 1.1rem;
+  }
+
+  .story-content-render p {
+    text-indent: 15px;
+  }
+
+  /* Controles de Interface */
+  .volume-control {
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+  }
+
+  .volume-control input {
+    width: 80px;
+  }
+
+  .btn-back {
+    top: 10px;
+    left: 10px;
+    padding: 8px 15px;
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .story-title-detail {
+    font-size: 1.7rem;
+  }
+
+  .btn-action {
+    padding: 12px;
+    font-size: 0.8rem;
+  }
+
+  .tiptap-menu button {
+    padding: 5px 8px;
+    font-size: 0.7rem;
+  }
+}
